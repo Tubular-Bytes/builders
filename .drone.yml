@@ -1,0 +1,52 @@
+---
+kind: pipeline
+type: kubernetes
+name: default
+
+steps:
+  - 
+    name: build golang
+    image: thegeeklab/drone-docker-buildx
+    privileged: true
+    settings:
+      dockerfile: Dockerfile-golang
+      registry: registry.0x42.in
+      username: 
+        from_secret: registry_username
+      password:
+        from_secret: registry_password
+      repo: registry.0x42.in/terrence/golang
+      tags: 
+        - 1.24-alpine3.21
+        - ${DRONE_COMMIT_SHA}
+      platforms: 
+        - linux/arm64
+        - linux/amd64
+    when:
+      branch:
+        - main
+      event:
+        - push
+  -
+    name: build base image
+    image: thegeeklab/drone-docker-buildx
+    privileged: true
+    settings:
+      dockerfile: Dockerfile-base
+      registry: registry.0x42.in
+      username: 
+        from_secret: registry_username
+      password:
+        from_secret: registry_password
+      repo: registry.0x42.in/terrence/golang
+      tags: 
+        - alpine3.21
+        - ${DRONE_COMMIT_SHA}
+      platforms: 
+        - linux/arm64
+        - linux/amd64
+    when:
+      branch:
+        - main
+      event:
+        - push

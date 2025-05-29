@@ -1,0 +1,6 @@
+FROM alpine:3.21 AS base
+
+RUN apk add --no-cache \
+    ca-certificates \
+    git \
+    make
