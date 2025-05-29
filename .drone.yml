@@ -38,7 +38,7 @@ steps:
         from_secret: registry_username
       password:
         from_secret: registry_password
-      repo: registry.0x42.in/terrence/golang
+      repo: registry.0x42.in/terrence/base
       tags: 
         - alpine3.21
         - ${DRONE_COMMIT_SHA}
