@@ -71,8 +71,6 @@ steps:
       platforms: 
         - linux/arm64
         - linux/amd64
-    depends_on:
-      - build base image
     when:
       branch:
         - main
@@ -83,12 +81,9 @@ steps:
     image: registry.0x42.in/terrence/tofu:1.9.1-alpine3.21
     commands:
       - tofu version
-    depends_on:
-      - build tofu image
-      - build golang image
 
 ---
 kind: signature
-hmac: 6dd1e19ab909aef33b62d3f76b11852ae53d18159d863f86afe8866a348e3e2a
+hmac: 3aae6f92393e3570ade3cddc323dbc7c3205522356272cea7f4bedbcf09ed146
 
 ...
