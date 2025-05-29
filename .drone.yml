@@ -57,7 +57,7 @@ steps:
     image: thegeeklab/drone-docker-buildx
     privileged: true
     settings:
-      dockerfile: Dockerfile-base
+      dockerfile: Dockerfile-tofu
       registry: registry.0x42.in
       username: 
         from_secret: registry_username
@@ -84,6 +84,6 @@ steps:
 
 ---
 kind: signature
-hmac: 3aae6f92393e3570ade3cddc323dbc7c3205522356272cea7f4bedbcf09ed146
+hmac: 340e8cba8835f41f1848f11eb95bdbb43340912fde23ac97d20d534b1e46ef93
 
 ...
