@@ -50,3 +50,8 @@ steps:
         - main
       event:
         - push
+---
+kind: signature
+hmac: c51ddfdd59df0b1da21f5fdfa647cc98ddd9fe8bdf91d1c84f5be258d421c239
+
+...
