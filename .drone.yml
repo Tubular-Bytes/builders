@@ -19,6 +19,7 @@ steps:
       tags: 
         - 1.24-alpine3.21
         - ${DRONE_COMMIT_SHA}
+        - latest
       platforms: 
         - linux/arm64
         - linux/amd64
@@ -42,6 +43,31 @@ steps:
       tags: 
         - alpine3.21
         - ${DRONE_COMMIT_SHA}
+        - latest
+      platforms: 
+        - linux/arm64
+        - linux/amd64
+    when:
+      branch:
+        - main
+      event:
+        - push
+  -
+    name: build tofu image
+    image: thegeeklab/drone-docker-buildx
+    privileged: true
+    settings:
+      dockerfile: Dockerfile-base
+      registry: registry.0x42.in
+      username: 
+        from_secret: registry_username
+      password:
+        from_secret: registry_password
+      repo: registry.0x42.in/terrence/tofu
+      tags: 
+        - 1.9.1-alpine3.21
+        - ${DRONE_COMMIT_SHA}
+        - latest
       platforms: 
         - linux/arm64
         - linux/amd64
@@ -52,6 +78,6 @@ steps:
         - push
 ---
 kind: signature
-hmac: c51ddfdd59df0b1da21f5fdfa647cc98ddd9fe8bdf91d1c84f5be258d421c239
+hmac: 1e6df548aaea9f24a49c64dc4e538060bdc7403a60d8acc777f02d6c5277889a
 
 ...

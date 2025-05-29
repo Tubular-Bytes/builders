@@ -1,0 +1,6 @@
+FROM ghcr.io/opentofu/opentofu:1.9.1-minimal AS tofu
+
+FROM registry.0x42.in/terrence/base:alpine3.21
+
+COPY --from=tofu /usr/local/bin/tofu /usr/local/bin/tofu
+
